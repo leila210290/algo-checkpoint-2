@@ -1,0 +1,40 @@
+ALGORITHM check_orthogonality
+VAR
+    v1, v2 : ARRAY[1..100] OF INTEGER
+    ps, n, i : INTEGER
+
+// PROCEDURE: Calculates dot product
+PROCEDURE dot_product(v1 : ARRAY[1..100] OF INTEGER, v2 : ARRAY[1..100] OF INTEGER, n : INTEGER, ps : OUT INTEGER)
+VAR
+    i : INTEGER
+BEGIN
+    ps ← 0
+    FOR i FROM 1 TO n DO
+        ps ← ps + v1[i] * v2[i]
+    END FOR
+END PROCEDURE
+
+BEGIN
+    OUTPUT "Enter the size of vectors:"
+    INPUT n
+
+    FOR i FROM 1 TO n DO
+        OUTPUT "Enter v1[", i, "]:"
+        INPUT v1[i]
+    END FOR
+
+    FOR i FROM 1 TO n DO
+        OUTPUT "Enter v2[", i, "]:"
+        INPUT v2[i]
+    END FOR
+
+    CALL dot_product(v1, v2, n, ps)
+
+    OUTPUT "Dot product is: ", ps
+
+    IF ps = 0 THEN
+        OUTPUT "Vectors are orthogonal."
+    ELSE
+        OUTPUT "Vectors are NOT orthogonal."
+    ENDIF
+END

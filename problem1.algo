@@ -1,0 +1,50 @@
+ALGORITHM sum_distinct_elements
+VAR
+    set1, set2 : ARRAY[1..100] OF INTEGER
+    n1, n2, i, j, sum : INTEGER
+    isDistinct : BOOLEAN
+BEGIN
+    sum ← 0
+
+    OUTPUT "Enter the number of elements in Set 1:"
+    INPUT n1
+    FOR i FROM 1 TO n1 DO
+        OUTPUT "Enter element ", i, " of Set 1:"
+        INPUT set1[i]
+    END FOR
+
+    OUTPUT "Enter the number of elements in Set 2:"
+    INPUT n2
+    FOR i FROM 1 TO n2 DO
+        OUTPUT "Enter element ", i, " of Set 2:"
+        INPUT set2[i]
+    END FOR
+
+    // Check elements in Set 1 not in Set 2
+    FOR i FROM 1 TO n1 DO
+        isDistinct ← TRUE
+        FOR j FROM 1 TO n2 DO
+            IF set1[i] = set2[j] THEN
+                isDistinct ← FALSE
+            ENDIF
+        END FOR
+        IF isDistinct THEN
+            sum ← sum + set1[i]
+        ENDIF
+    END FOR
+
+    // Check elements in Set 2 not in Set 1
+    FOR i FROM 1 TO n2 DO
+        isDistinct ← TRUE
+        FOR j FROM 1 TO n1 DO
+            IF set2[i] = set1[j] THEN
+                isDistinct ← FALSE
+            ENDIF
+        END FOR
+        IF isDistinct THEN
+            sum ← sum + set2[i]
+        ENDIF
+    END FOR
+
+    OUTPUT "Sum of distinct elements is: ", sum
+END
